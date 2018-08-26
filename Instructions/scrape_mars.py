@@ -18,15 +18,19 @@ client = pymongo.MongoClient(conn)
 # Connect to a database. Will create one if not already available.
 db = client.mars_db
 
-# Drops collection if available to remove duplicates
-db.mars_data.drop()
 
+# Create executable path using Chrome
+executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+
+browser = Browser('chrome', **executable_path, headless=True)
 
 @app.route("/scrape")
 def scrape():
-    # Create executable path using Chrome
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+
+    result = {}
+
+    # Drops collection if available to remove duplicates
+    db.mars.drop()
 
     # URL of page to be scraped and reading url
     mars_url = "https://mars.nasa.gov/news/"
@@ -41,9 +45,13 @@ def scrape():
     news_title = soup.find('div', class_= 'content_title').text
     news_title
 
+    result.update({'newsTitle': news_title})
+
     # Scraping latest news' first paragraph
     paragraph_text = soup.find('div', class_= 'article_teaser_body').text
     paragraph_text
+    result.update({'newsText': paragraph_text})
+
 
 
     # ### JPL Mars Space Images - Featured Image
@@ -70,6 +78,7 @@ def scrape():
 
     mars_weather = soup.find('p', class_= 'TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
     mars_weather
+    result.update({'weather': mars_weather})
 
 
     # ### Mars Facts
@@ -95,8 +104,8 @@ def scrape():
     html_table.replace('\n', '')
 
     # Displaying Mars Facts in New HTML window
-    df.to_html('mars_facts_table.html')
-    get_ipython().system('open mars_facts_table.html')
+    # df.to_html('mars_facts_table.html')
+    # get_ipython().system('open mars_facts_table.html')
 
 
     # ### Mars Hemispheres
@@ -126,6 +135,16 @@ def scrape():
     # print(hemisphere_image_urls)
 
 
+    print(result)
+
+
+
+    db.mars.insert_one(result)
+
+    # Return the template with the mars data in it
+    return render_template('scrape.html')
+
+
 
 # Function to retrieve enchanced urls
 def getEnhancedImageUrl(href):
@@ -138,16 +157,25 @@ def getEnhancedImageUrl(href):
     return enhanced_url
 
 
+    # data = {
+    #     "title": title,
+    #     "img_url": enhanced_url
+    # }
+
+    # collection.mars_data(data)
+
 # Set route
 @app.route('/')
 def index():
     # Store the entire team collection in a list
-    mars_data = list(db.mars.find())
-    print(mars_data)
+    # mars_data = list(db.mars_db.find())
+    marsList = list(db.mars.find())
+
+    print(marsList)
 
 
     # Return the template with the mars data in it
-    return render_template('index.html', mars_data=mars_data)
+    return render_template('index.html', marsList=marsList)
 
 
 if __name__ == "__main__":

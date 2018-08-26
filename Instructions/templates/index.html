@@ -5,6 +5,19 @@
     <title> Mission to Mars </title>
 </head>
 <body>
-    Mission to Mars
+<div class="container text-center">
+    <h1 class="jumbotron">Mars Information</h1>
+    <div>
+        {% for mars in marsList %}
+        <h1>{{mars.newsTitle}}</h1>
+        <p>{{mars.newsText}}</p>
+
+
+        <p>{{mars.weather}}</p>
+
+
+        {% endfor %}
+    </div>
+</div>
 </body>
 </html>
