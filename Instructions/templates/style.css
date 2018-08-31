@@ -1,0 +1,140 @@
+/*
+body {
+    background-color: #cccccc;
+}
+*/
+
+
+.web-title{
+    color: white;
+    background-color: #299e85;
+    font-size: 24px;
+    padding: 10px;
+    font-family: "Times New Roman";
+    height: 100%
+}
+
+.button {
+    border: blue;
+    color: dodgerblue;
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.container {
+    padding: 40px;
+    background: lightgray;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.image-title-1 {
+    font-family: "Times New Roman";
+    color: #299e85;
+    font-size: 18px; 
+}
+
+.web-box {
+    min-height: 100px;
+    padding: 20px;
+    margin: 20px;
+    font-weight: 600;
+    color: gray;
+    background-color: white;
+}
+
+.web-box-title {
+    font-family: "Times New Roman";
+    color: #299e85;
+    font-size: 24px;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left:10px;
+    border-bottom: 1px solid #dcdcdc;
+
+
+}
+
+.web-box-text {
+    font-family: Arial;
+    color: rgba(108, 108, 108, 0.98);
+    font-size: 14px;
+    padding: 10px;
+    font-weight: 500;
+    word-spacing: .1em;
+    /*letter-spacing: .1em;*/
+    line-height: 1.8em;
+    text-align: left;
+}
+
+.web-box-text p {
+    padding: 5px;
+}
+
+
+.web-footer {
+    position: fixed;
+    border-top: 5px solid #299e85;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 10px;
+    color: #ffffff;
+    background-color: #676767;
+}
+
+.web-element {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+}
+
+.web-instruction {
+
+    font-family: "Times New Roman";
+    font-size: 12px;
+    font-weight: 100;
+    padding: 20px;
+
+}
+
+
+.web-image-box {
+
+    font-family: "Times New Roman";
+    font-size: 11px;
+    display: block;
+    flex: none;
+    text-align: center;
+    align-content: center;
+}
+
+.web-image-title {
+
+    display: block;
+    font-family: "Times New Roman";
+    font-size: 20px;
+    flex: none;
+    text-align: center;
+    align-content: center;
+    color: #299e85;
+    padding-top: 10px;
+}
+
+.skyblue {
+    background: deepskyblue;
+}
+
+.purple {
+    background: rebeccapurple;
+}
+
+.red {
+    background: indianred;
+}

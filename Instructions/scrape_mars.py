@@ -65,7 +65,7 @@ def scrape():
 
     featured_image_url = soup.find('img', class_= 'thumb')
     featured_image_url
-
+    result.update({'newsImage': news_image})
 
     # ### Mars Weather
     # Twitter URL of Mars Weather
@@ -78,7 +78,7 @@ def scrape():
 
     mars_weather = soup.find('p', class_= 'TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
     mars_weather
-    result.update({'weather': mars_weather})
+    result.update({'newsWeather': news_weather})
 
 
     # ### Mars Facts

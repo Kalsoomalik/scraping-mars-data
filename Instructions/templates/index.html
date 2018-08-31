@@ -2,22 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Mission to Mars </title>
+    <title>Mission to Mars</title>
 </head>
 <body>
-<div class="container text-center">
-    <h1 class="jumbotron">Mars Information</h1>
-    <div>
+    <div style="background: lightgray; text-align: center; vertical-align: middle; text-size: 24;text-align: center;padding-top: 125px;padding-bottom: 125px; padding-left:35px;">
+        <h1><b>Mission To Mars</b></h1>
+        <button class="button button2" style="background: dodgerblue; border-radius: 4px">
+            <span style="font-size: 20px">Scrape New Data</span>
+        </button>
+    </div>
+    <h2><b>Latest Mars News</b></h2>
+     <div>
+         {% for mars in marsList %}
+         <h4>{{mars.newsTitle}}</h4>
+         <p>{{mars.newsText}}</p>
+         {% endfor %}
+    </div>
+
+    <!--<div img="https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars">-->
+
+    <!--</div>-->
+
+    <div style="border:2px solid black; padding-left: 80px;">
+        <div class="row">
+            <div class="col-xs-3 col-sm-6 col-md-12">
+                <div class="box red">col-xs-3 col-sm-6 col-md-12</div>
+            </div>
+
         {% for mars in marsList %}
-        <h1>{{mars.newsTitle}}</h1>
-        <p>{{mars.newsText}}</p>
-
-
-        <p>{{mars.weather}}</p>
-
-
+        <h4>Current Weather on Mars</h4>
+        <p>{{mars.newsWeather}}</p>
         {% endfor %}
     </div>
+
+
+        <div class="web-box-text pull-left" style="min-height:250px;padding-top: 80px; padding-left: 950px;">
+    <h3><b>Mars Facts</b></h3>
+        <table border="1" class="dataframe">
+            <thead>
+            <tr style="text-align: center;">
+                <th></th>
+                <th>Characteristics</th>
+                <th>Values</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>0</th>
+                <td>Equatorial Diameter:</td>
+                <td>6,792 km</td>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td>Polar Diameter:</td>
+                <td>6,752 km</td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>Mass:</td>
+                <td>6.42 x 10^23 kg (10.7% Earth)</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Moons:</td>
+                <td>2 (Phobos &amp; Deimos)</td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td>Orbit Distance:</td>
+                <td>227,943,824 km (1.52 AU)</td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td>Orbit Period:</td>
+                <td>687 days (1.9 years)</td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td>Surface Temperature:</td>
+                <td>-153 to 20 °C</td>
+            </tr>
+            <tr>
+                <th>7</th>
+                <td>First Record:</td>
+                <td>2nd millennium BC</td>
+            </tr>
+            <tr>
+                <th>8</th>
+                <td>Recorded By:</td>
+                <td>Egyptian astronomers</td>
+            </tr>
+            </tbody>
+        </table>
+    </a>
+    </a>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<!--
+<div class="container text-center">
+    <h1 class="jumbotron">Mars Information</h1>
+   
+-->
 </body>
 </html>
