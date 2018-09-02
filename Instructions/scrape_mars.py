@@ -63,10 +63,11 @@ def scrape():
     html = browser.html
     soup = bs(html, 'html.parser')
 
-    featured_image_url = soup.find('img', class_= 'thumb')
+    featured_image = soup.find('article', class_= 'carousel_item')
+    featured_image_url = "https://www.jpl.nasa.gov" + featured_image['style'][23:-3]
     featured_image_url
-    result.update({'newsImage': news_image})
 
+    result.update({'featuredImage': featured_image_url})
     # ### Mars Weather
     # Twitter URL of Mars Weather
     twitter_url = "https://twitter.com/marswxreport?lang=en"
