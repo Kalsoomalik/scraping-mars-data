@@ -5,39 +5,47 @@
     <title>Mission to Mars</title>
 </head>
 <body>
-    <div style="background: lightgray; text-align: center; vertical-align: middle; text-size: 24;text-align: center;padding-top: 125px;padding-bottom: 125px; padding-left:35px;">
-        <h1><b>Mission To Mars</b></h1>
-        <button class="button button2" style="background: dodgerblue; border-radius: 4px">
-            <span style="font-size: 20px">Scrape New Data</span>
-        </button>
-    </div>
-    <h2><b>Latest Mars News</b></h2>
-     <div>
-         {% for mars in marsList %}
-         <h4>{{mars.newsTitle}}</h4>
-         <p>{{mars.newsText}}</p>
-         {% endfor %}
-    </div>
+<div style="background: lightgray; text-align: center; vertical-align: middle; text-size: 24;text-align: center;padding-top: 125px;padding-bottom: 125px; padding-left:35px;">
+    <h1><b>Mission To Mars</b></h1>
+    <!--<button class="button button2" style="background: dodgerblue; border-radius: 4px">-->
+    <!--<a href="http://127.0.0.1:5000/scrape">-->
+    <!--<span style="font-size: 20px">Scrape New Data</span>-->
+    <!--</a>-->
+    <!--</button>-->
+    <a href="/scrape"
+       class="btn btn-primary btn-lg active" role="button"
+       aria-pressed="true">Scrape New Data</a>
+</div>
 
-    <!--<div img="https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars">-->
+<div class="featured_image">
+    {% for mars in marsList %}
+        <h4>Latest News about Mars</h4>
+        <p>{{mars.newsTitle}}</p>
+        <p>{{mars.newsText}}</p>
+    {% endfor %}
 
-    <!--</div>-->
+</div>
 
-    <div style="border:2px solid black; padding-left: 80px;">
-        <div class="row">
-            <div class="col-xs-3 col-sm-6 col-md-12">
-                <div class="box red">col-xs-3 col-sm-6 col-md-12</div>
-            </div>
 
-        {% for mars in marsList %}
+{% for mars in marsList %}
+    <h1>Featured Mars Image</h1>
+    <img src="{{mars.featuredImage}}" width="900" height="700"
+         align="left" style="margin-right: 10px; margin-bottom: 10px;"/>
+{% endfor %}
+
+
+<div class="box skyblue" style="border-color: #2aabd2">
+
+    {% for mars in marsList %}
         <h4>Current Weather on Mars</h4>
         <p>{{mars.newsWeather}}</p>
-        {% endfor %}
-    </div>
+    {% endfor %}
 
+</div>
 
-        <div class="web-box-text pull-left" style="min-height:250px;padding-top: 80px; padding-left: 950px;">
-    <h3><b>Mars Facts</b></h3>
+<div class="col-md-12 col-xs-12">
+    <div class="web-box-text pull-left" style="min-height:250px; padding-top: 100px; padding-left: 950px;">
+        <h3><b>Mars Facts</b></h3>
         <table border="1" class="dataframe">
             <thead>
             <tr style="text-align: center;">
@@ -94,18 +102,9 @@
             </tr>
             </tbody>
         </table>
-    </a>
-    </a>
-</div>
-</div>
-</div>
-</div>
+    </div>
 </div>
 
-<!--
-<div class="container text-center">
-    <h1 class="jumbotron">Mars Information</h1>
-   
--->
+
 </body>
 </html>
