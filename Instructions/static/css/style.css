@@ -1,0 +1,16 @@
+.banner {
+    background: #6ce26e;
+    text-align: center;
+    vertical-align: middle;
+    text-size: 24;
+    text-align: center;
+    padding-top: 125px;
+    padding-bottom: 125px;
+    padding-left: 35px;
+}
+
+.featuredImage {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}

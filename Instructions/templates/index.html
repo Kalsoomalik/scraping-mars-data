@@ -3,108 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<div style="background: lightgray; text-align: center; vertical-align: middle; text-size: 24;text-align: center;padding-top: 125px;padding-bottom: 125px; padding-left:35px;">
+<div class="banner">
     <h1><b>Mission To Mars</b></h1>
-    <!--<button class="button button2" style="background: dodgerblue; border-radius: 4px">-->
-    <!--<a href="http://127.0.0.1:5000/scrape">-->
-    <!--<span style="font-size: 20px">Scrape New Data</span>-->
-    <!--</a>-->
-    <!--</button>-->
     <a href="/scrape"
-       class="btn btn-primary btn-lg active" role="button"
+       class="btn btn-primary btn active" role="button"
        aria-pressed="true">Scrape New Data</a>
 </div>
-
-<div class="featured_image">
-    {% for mars in marsList %}
-        <h4>Latest News about Mars</h4>
-        <p>{{mars.newsTitle}}</p>
-        <p>{{mars.newsText}}</p>
-    {% endfor %}
-
-</div>
-
-
 {% for mars in marsList %}
-    <h1>Featured Mars Image</h1>
-    <img src="{{mars.featuredImage}}" width="900" height="700"
-         align="left" style="margin-right: 10px; margin-bottom: 10px;"/>
-{% endfor %}
 
-
-<div class="box skyblue" style="border-color: #2aabd2">
-
-    {% for mars in marsList %}
-        <h4>Current Weather on Mars</h4>
-        <p>{{mars.newsWeather}}</p>
-    {% endfor %}
-
-</div>
-
-<div class="col-md-12 col-xs-12">
-    <div class="web-box-text pull-left" style="min-height:250px; padding-top: 100px; padding-left: 950px;">
-        <h3><b>Mars Facts</b></h3>
-        <table border="1" class="dataframe">
-            <thead>
-            <tr style="text-align: center;">
-                <th></th>
-                <th>Characteristics</th>
-                <th>Values</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th>0</th>
-                <td>Equatorial Diameter:</td>
-                <td>6,792 km</td>
-            </tr>
-            <tr>
-                <th>1</th>
-                <td>Polar Diameter:</td>
-                <td>6,752 km</td>
-            </tr>
-            <tr>
-                <th>2</th>
-                <td>Mass:</td>
-                <td>6.42 x 10^23 kg (10.7% Earth)</td>
-            </tr>
-            <tr>
-                <th>3</th>
-                <td>Moons:</td>
-                <td>2 (Phobos &amp; Deimos)</td>
-            </tr>
-            <tr>
-                <th>4</th>
-                <td>Orbit Distance:</td>
-                <td>227,943,824 km (1.52 AU)</td>
-            </tr>
-            <tr>
-                <th>5</th>
-                <td>Orbit Period:</td>
-                <td>687 days (1.9 years)</td>
-            </tr>
-            <tr>
-                <th>6</th>
-                <td>Surface Temperature:</td>
-                <td>-153 to 20 °C</td>
-            </tr>
-            <tr>
-                <th>7</th>
-                <td>First Record:</td>
-                <td>2nd millennium BC</td>
-            </tr>
-            <tr>
-                <th>8</th>
-                <td>Recorded By:</td>
-                <td>Egyptian astronomers</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="featuredImage"
+         style="padding: 20px">
+        <h2>Latest Mars News</h2>
+        <div><b>{{ mars.newsTitle }}</b></div>
+        <div>{{ mars.newsText }}</div>
     </div>
-</div>
+    <!-- Start: Featured Image -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <h2>Featured Mars Image</h2>
+                    <img src="{{ mars.featuredImage }}"
+                         class="img-thumbnail"/>
+                </div>
 
 
+            </div>
+            <div class="col-md-4"
+                 style="border: 0px solid #e0e0e0; padding: 0px">
+                <div style="border: 1px solid #e0e0e0; padding: 20px">
+                    <h5>Current Weather on Mars</h5>
+                    <p>{{ mars.currentWeather }}</p>
+                </div>
+                <div style="padding-top: 20px;">
+                    <h5>Mars Facts</h5>
+                    <table border="1" class="dataframe">
+                        <thead>
+                        <tr style="text-align: center;">
+                            <th></th>
+                            <th>Characteristics</th>
+                            <th>Values</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>0</th>
+                            <td>Equatorial Diameter:</td>
+                            <td>6,792 km</td>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <td>Polar Diameter:</td>
+                            <td>6,752 km</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Mass:</td>
+                            <td>6.42 x 10^23 kg (10.7% Earth)</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>Moons:</td>
+                            <td>2 (Phobos &amp; Deimos)</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>Orbit Distance:</td>
+                            <td>227,943,824 km (1.52 AU)</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>Orbit Period:</td>
+                            <td>687 days (1.9 years)</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>Surface Temperature:</td>
+                            <td>-153 to 20 °C</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>First Record:</td>
+                            <td>2nd millennium BC</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>Recorded By:</td>
+                            <td>Egyptian astronomers</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End: Featured Image -->
+
+    <!-- Start: Mars Hemispheres -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="padding:20px; text-align: center;
+        padding-top: 40px;">
+                <h2>Mars Hemispheres</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div style="border: 1px solid #d8d8d8">
+                    <img src="{{ mars.hemisphereList[0].img_url }}"
+                         class="img-thumbnail"/>
+                    <div style="padding: 10px">{{ mars.hemisphereList[0].title }}</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="border: 1px solid #d8d8d8">
+                    <img src="{{ mars.hemisphereList[1].img_url }}"
+                         class="img-thumbnail"/>
+                    <div style="padding: 10px">{{ mars.hemisphereList[1].title }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 40px">
+            <div class="col-md-6">
+                <div style="border: 1px solid #d8d8d8">
+                    <img src="{{ mars.hemisphereList[2].img_url }}"
+                         class="img-thumbnail"/>
+                    <div style="padding: 10px">{{ mars.hemisphereList[2].title }}</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="border: 1px solid #d8d8d8">
+                    <img src="{{ mars.hemisphereList[3].img_url }}"
+                         class="img-thumbnail"/>
+                    <div style="padding: 10px">{{ mars.hemisphereList[3].title }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start: End Hemispheres -->
+{% endfor %}
 </body>
 </html>

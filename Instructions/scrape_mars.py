@@ -2,9 +2,8 @@
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from splinter import Browser
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import pymongo
-
 
 # Create an instance of our Flask app.
 app = Flask(__name__)
@@ -53,7 +52,6 @@ def scrape():
     result.update({'newsText': paragraph_text})
 
 
-
     # ### JPL Mars Space Images - Featured Image
     # URL of page to be scraped and reading url
     nasa_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -77,9 +75,9 @@ def scrape():
     html = browser.html
     soup = bs(html, 'html.parser')
 
-    mars_weather = soup.find('p', class_= 'TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
-    mars_weather
-    result.update({'newsWeather': news_weather})
+    current_weather = soup.find('p', class_= 'TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
+    current_weather
+    result.update({'currentWeather': current_weather})
 
 
     # ### Mars Facts
@@ -95,7 +93,6 @@ def scrape():
     df.columns = ['Characteristics', 'Values']
     df.head()
 
-
     # ### Converting into HTML strings
     # Using Pandas to convert the data to a HTML table string
     html_table = df.to_html()
@@ -103,11 +100,11 @@ def scrape():
 
     # Replacing extra '\n' with spaces
     html_table.replace('\n', '')
+    result.update({'facts': html_table})
 
     # Displaying Mars Facts in New HTML window
     # df.to_html('mars_facts_table.html')
     # get_ipython().system('open mars_facts_table.html')
-
 
     # ### Mars Hemispheres
     url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -134,17 +131,11 @@ def scrape():
         hemisphere_image_urls.append({"title": title, "img_url": enhanced_url})
 
     # print(hemisphere_image_urls)
-
-
-    print(result)
-
-
-
+    result.update({'hemisphereList': hemisphere_image_urls})
     db.mars.insert_one(result)
 
-    # Return the template with the mars data in it
-    return render_template('scrape.html')
-
+    # Redirect back to home page
+    return redirect("/", code=302)
 
 
 # Function to retrieve enchanced urls
@@ -158,22 +149,12 @@ def getEnhancedImageUrl(href):
     return enhanced_url
 
 
-    # data = {
-    #     "title": title,
-    #     "img_url": enhanced_url
-    # }
-
-    # collection.mars_data(data)
-
 # Set route
 @app.route('/')
 def index():
     # Store the entire team collection in a list
     # mars_data = list(db.mars_db.find())
     marsList = list(db.mars.find())
-
-    print(marsList)
-
 
     # Return the template with the mars data in it
     return render_template('index.html', marsList=marsList)
