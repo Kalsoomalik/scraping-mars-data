@@ -9,4 +9,5 @@ Template: https://github.com/Kalsoomalik/scraping-mars-data/blob/master/Instruct
 
 Jupyter Notebook: https://github.com/Kalsoomalik/scraping-mars-data/blob/master/Instructions/mission_to_mars.ipynb
 
-Screen Image (Local Environment): 
+Screen Image (Local): 
+![Screen Image](Instructions/screen-image-local.png)
